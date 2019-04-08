@@ -335,10 +335,10 @@ class Cmdline {
 	public static void main(String[] argv) {
 		if (argv.length < 1) {
 			System.out.println("argv is emplty, use test argv instead:");
-			argv = new String[]{ "-file=10", "abc", "-f", "filex", "-H", "-conf", "cfile1", "-c", "cfile2", "--", "-x", "-help" };
+			argv = new String[]{ "-h", "-H", "-f", "file", "--file", "file2", "-e", "s/abc/xyz/", "-r", "-n", "-s=A", "-oa=b", "-S", "", "-i", "-x", "xfile", "--wenj=file3", "--www", "-aa", "-vvv", "-S", "DD", "--", "-0", "-y" };
 		}
-		System.out.println("argv:" + Arrays.toString(argv));
-
+		System.out.printf("argv: %s\n", Arrays.toString(argv));
+		System.out.printf("----------------------------------------------------------------\n\n");
 		ArrayList<Option> optionList = new ArrayList<Option>();
 		optionList.add(new Option(null, Option.ArgType.N, "Options group1:", "", false, false));
 		//optionList.add(new Option("Options group1:"));
@@ -366,6 +366,9 @@ class Cmdline {
 		}
 		if (cl.hasOption("conf")) {
 			System.out.println("opt(conf):" + cl.getOption("conf").toString());
+		}
+		if (cl.hasOption("o")) {
+			System.out.println("opt(o):" + cl.getOption("o").toString());
 		}
 
 		if (cl.hasOption("v")) {
