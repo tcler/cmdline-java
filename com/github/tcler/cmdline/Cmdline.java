@@ -340,21 +340,20 @@ class Cmdline {
 		System.out.printf("argv: %s\n", Arrays.toString(argv));
 		System.out.printf("----------------------------------------------------------------\n\n");
 		ArrayList<Option> optionList = new ArrayList<Option>();
-		optionList.add(new Option(null, Option.ArgType.N, "Options group1:", "", false, false));
-		//optionList.add(new Option("Options group1:"));
-		optionList.add(new Option("help h H 帮助", Option.ArgType.N, "print this help", "", false, false));
-		optionList.add(new Option("file f", Option.ArgType.M, "specify file", "", false, false));
-		optionList.add(new Option("conf c", Option.ArgType.Y, "config file", "", false, false));
-		optionList.add(new Option("o", Option.ArgType.O, "mount option", "", false, false));
-		optionList.add(new Option("v", Option.ArgType.N, "verbose output, -vvv means verbose level 3", "", false, false));
-		optionList.add(new Option("x", Option.ArgType.Y, "dump binary file to text", "", false, false));
-		optionList.add(new Option("s", Option.ArgType.Y, "enable smart mode", "", false, false));
-		optionList.add(new Option("S", Option.ArgType.Y, "", "s", true, false));
+		optionList.add(new Option("Options group1:"));
+		optionList.add(new Option("help h H 帮助", Option.ArgType.N, "print this help"));
+		optionList.add(new Option("file f", Option.ArgType.M, "specify file"));
+		optionList.add(new Option("conf c", Option.ArgType.Y, "config file"));
+		optionList.add(new Option("o", Option.ArgType.O, "mount option", ""));
+		optionList.add(new Option("v", Option.ArgType.N, "verbose output, -vvv means verbose level 3"));
+		optionList.add(new Option("x", Option.ArgType.Y, "dump binary file to text"));
+		optionList.add(new Option("s", Option.ArgType.Y, "enable smart mode"));
+		optionList.add(new Option("S", Option.ArgType.Y, "", "s", true));
 
-		optionList.add(new Option(null, Option.ArgType.N, "\nOptions group2:", "", false, false));
-		optionList.add(new Option("e", Option.ArgType.M, "sed -e option, will forward to child sed process", "", false, true));
-		optionList.add(new Option("r", Option.ArgType.N, "sed -r option, will forward to child sed process", "", false, true));
-		optionList.add(new Option("n", Option.ArgType.N, "sed -n option, will forward to child sed process", "", false, true));
+		optionList.add(new Option("\nOptions group2:"));
+		optionList.add(new Option("e", Option.ArgType.M, "sed -e option, will forward to child sed process", true));
+		optionList.add(new Option("r", Option.ArgType.N, "sed -r option, will forward to child sed process", true));
+		optionList.add(new Option("n", Option.ArgType.N, "sed -n option, will forward to child sed process", true));
 
 		Cmdline cl = new Cmdline(optionList, argv);
 
