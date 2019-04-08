@@ -1,10 +1,5 @@
 package com.github.tcler.cmdline;
 
-import java.util.HashMap;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-
 class Option {
 	String[] names;
 	ArgType argtype;
@@ -31,4 +26,22 @@ class Option {
 		this.hide = hide;
 		this.forward = forw;
 	}
+
+	/*
+	Option(String n, ArgType argtype, String help) {
+		Option(n, argtype, help, "", false, false);
+	}
+	Option(String n, ArgType argtype, String help, String link) {
+		Option(n, argtype, help, link, false, false);
+	}
+	Option(String n, ArgType argtype, String help, boolean forw) {
+		Option(n, argtype, help, "", false, forw);
+	}
+	Option(String n, ArgType argtype, String help, String link, boolean hide) {
+		Option(n, argtype, help, link, hide, false);
+	}
+	Option(String help) {
+		Option("", ArgType.N, help, "", false, false);
+	}
+	*/
 }
