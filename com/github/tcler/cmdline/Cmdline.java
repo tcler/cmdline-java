@@ -280,8 +280,8 @@ class Cmdline {
 				continue;
 			}
 
-			if (opt.names == null) {
-				if (opt.help.length() > 0) {
+			if (opt.names == null || opt.names.equals("")) {
+				if (opt.help != null && opt.help.length() > 0) {
 					System.out.printf("%s\n", opt.help);
 				}
 				continue;
@@ -341,6 +341,7 @@ class Cmdline {
 
 		ArrayList<Option> optionList = new ArrayList<Option>();
 		optionList.add(new Option(null, Option.ArgType.N, "Options group1:", "", false, false));
+		//optionList.add(new Option("Options group1:"));
 		optionList.add(new Option("help h H 帮助", Option.ArgType.N, "print this help", "", false, false));
 		optionList.add(new Option("file f", Option.ArgType.M, "specify file", "", false, false));
 		optionList.add(new Option("conf c", Option.ArgType.Y, "config file", "", false, false));
