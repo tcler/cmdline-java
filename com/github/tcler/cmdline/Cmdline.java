@@ -253,8 +253,14 @@ class Cmdline {
 		return optionMap.containsKey(key);
 	}
 
-	ArrayList<String> getOption(String key) {
+	ArrayList<String> getOptionArgList(String key) {
 		return optionMap.get(key);
+	}
+	String getOptionArgString(String key) {
+		return optionMap.get(key).get(0);
+	}
+	int getOptionNumber(String key) {
+		return optionMap.get(key).size();
 	}
 
 	String genOptdesc(String[] names) {
@@ -361,21 +367,21 @@ class Cmdline {
 			cl.getUsage(optionList);
 		}
 		if (cl.hasOption("file")) {
-			System.out.println("opt(file):" + cl.getOption("file").toString());
+			System.out.println("opt(file): " + cl.getOptionArgList("file").toString());
 		}
 		if (cl.hasOption("conf")) {
-			System.out.println("opt(conf):" + cl.getOption("conf").toString());
+			System.out.println("opt(conf): " + cl.getOptionArgString("conf"));
 		}
 		if (cl.hasOption("o")) {
-			System.out.println("opt(o):" + cl.getOption("o").toString());
+			System.out.println("opt(o): " + cl.getOptionArgString("o"));
 		}
 
 		if (cl.hasOption("v")) {
-			int verboselevel = cl.getOption("v").size();
+			int verboselevel = cl.getOptionNumber("v");
 			System.out.println("opt(v): " + verboselevel);
 		}
 		if (cl.hasOption("s")) {
-			System.out.println("opt(s): " + cl.getOption("s").toString());
+			System.out.println("opt(s): " + cl.getOptionArgString("s"));
 		}
 
 		System.out.println("args:" + cl.args.toString());
