@@ -8,7 +8,7 @@ features in my cmdline-java:
 3. hide attribute of option object， used to hide some option in usage/help info
 4. forward option
 
-test
+test with Cmdline.main
 ```
 git clone https://github.com/tcler/cmdline-java
 cd cmdline-java
@@ -21,7 +21,7 @@ javac com/github/tcler/cmdline/*.java
 jar cfe cmdline.jar com.github.tcler.cmdline.Cmdline com/github/tcler/cmdline/*.class
 java -jar cmdline.jar  -h -H -f file --file file2 -e 's/abc/xyz/'  -r -n  -s=A -oa=b -S ''  -i -x xfile --wenj=file3 --www -aa -vvv -S DD -- -0 -y
 
-# or: run Mail class by specified JAVA PATH
+# or: run Main class by specified CLASSPATH
 javac com/github/tcler/cmdline/*.java
 jar cfe cmdline.jar com.github.tcler.cmdline.Cmdline com/github/tcler/cmdline/*.class
 mv cmdline.jar $JAVA_HOME/lib/.
@@ -32,7 +32,7 @@ java -cp $CLASSPATH com.github.tcler.cmdline.Cmdline
 # Example code
 see: https://github.com/tcler/cmdline-java/blob/master/test/CmdlineTest.java
 
-test:
+test with test class:
 ```
 git clone https://github.com/tcler/cmdline-java
 cd cmdline-java
