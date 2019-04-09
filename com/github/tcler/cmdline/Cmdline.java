@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-class Cmdline {
+public class Cmdline {
 	HashMap<String, ArrayList<String>> optionMap = new HashMap<String, ArrayList<String>>();
 	ArrayList<String> invalidOptions = new ArrayList<String>();
 	ArrayList<String> forwardOptions = new ArrayList<String>();
@@ -25,7 +25,7 @@ class Cmdline {
 		String optarg;
 	}
 
-	Cmdline(ArrayList<Option> optionList, String[] argv) {
+	public Cmdline(ArrayList<Option> optionList, String[] argv) {
 		Option[] options = optionList.toArray(new Option[0]);
 		ArrayList<String> nargv = new ArrayList<String>(Arrays.asList(argv));
 		ArgParseStatus argStat;
@@ -249,18 +249,27 @@ class Cmdline {
 		return parseStat;
 	}
 
-	boolean hasOption(String key) {
+	public boolean hasOption(String key) {
 		return optionMap.containsKey(key);
 	}
 
-	ArrayList<String> getOptionArgList(String key) {
+	public ArrayList<String> getOptionArgList(String key) {
 		return optionMap.get(key);
 	}
-	String getOptionArgString(String key) {
+	public String getOptionArgString(String key) {
 		return optionMap.get(key).get(0);
 	}
-	int getOptionNumber(String key) {
+	public int getOptionNumber(String key) {
 		return optionMap.get(key).size();
+	}
+	public ArrayList<String> getInvalidOptions() {
+		return invalidOptions;
+	}
+	public ArrayList<String> getForwardOptions() {
+		return forwardOptions;
+	}
+	public ArrayList<String> getArgs() {
+		return args;
 	}
 
 	String genOptdesc(String[] names) {
@@ -278,7 +287,7 @@ class Cmdline {
 		return ss + ls;
 	}
 
-	void getUsage (ArrayList<Option> optionList) {
+	public void getUsage (ArrayList<Option> optionList) {
 		Option[] options = optionList.toArray(new Option[0]);
 
 		for (Option opt: options) {
@@ -384,7 +393,9 @@ class Cmdline {
 			System.out.println("opt(s): " + cl.getOptionArgString("s"));
 		}
 
-		System.out.println("args:" + cl.args.toString());
+		System.out.println("invalidOptions: " + cl.getInvalidOptions().toString());
+		System.out.println("forwardOptions: " + cl.getForwardOptions().toString());
+		System.out.println("args: " + cl.getArgs().toString());
 	}
 }
 
