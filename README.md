@@ -13,7 +13,7 @@ test
 git clone https://github.com/tcler/cmdline-java
 cd cmdline-java
 javac com/github/tcler/cmdline/*.java
-#the default java path is . if JAVA_PATH not set
+#the default java path is . if CLASSPATH not set
 java com.github.tcler.cmdline.Cmdline -h -H -f file --file file2 -e 's/abc/xyz/'  -r -n  -s=A -oa=b -S ''  -i -x xfile --wenj=file3 --www -aa -vvv -S DD -- -0 -y
 
 # or: run jar file
@@ -25,10 +25,22 @@ java -jar cmdline.jar  -h -H -f file --file file2 -e 's/abc/xyz/'  -r -n  -s=A -
 javac com/github/tcler/cmdline/*.java
 jar cfe cmdline.jar com.github.tcler.cmdline.Cmdline com/github/tcler/cmdline/*.class
 mv cmdline.jar $JAVA_HOME/lib/.
-export JAVA_PATH=$JAVA_HOME/lib/cmdline.jar
-java -cp $JAVA_PATH com.github.tcler.cmdline.Cmdline
+export CLASSPATH=$JAVA_HOME/lib/cmdline.jar:.
+java -cp $CLASSPATH com.github.tcler.cmdline.Cmdline
 ```
 
 # Example code
-see: 
+see: https://github.com/tcler/cmdline-java/blob/master/test/CmdlineTest.java
 
+test:
+```
+git clone https://github.com/tcler/cmdline-java
+cd cmdline-java
+javac com/github/tcler/cmdline/*.java &&
+	jar cfe cmdline.jar com.github.tcler.cmdline.Cmdline com/github/tcler/cmdline/*.class &&
+	mv cmdline.jar $JAVA_HOME/lib/.
+export CLASSPATH=$JAVA_HOME/lib/cmdline.jar:.
+javac -d . test/CmdlineTest.java
+java CmdlineTest
+find . -name '*.class' | xargs rm -f
+```
