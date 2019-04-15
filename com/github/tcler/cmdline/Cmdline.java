@@ -295,7 +295,7 @@ public class Cmdline {
 				continue;
 			}
 
-			if (opt.names == null || opt.names.equals("")) {
+			if (opt.names == null || opt.names.length == 0) {
 				if (opt.help != null && opt.help.length() > 0) {
 					System.out.printf("%s\n", opt.help);
 				}

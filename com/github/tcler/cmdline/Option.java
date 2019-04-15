@@ -17,7 +17,7 @@ public class Option {
 
 	public Option(String n, ArgType argtype, String help, String link, boolean hide, boolean forw) {
 		this.names = null;
-		if (n != null && n.trim().length() > 0) {
+		if (n != null && !n.trim().isEmpty()) {
 			this.names = n.split(" ");
 		}
 		this.argtype = argtype;
