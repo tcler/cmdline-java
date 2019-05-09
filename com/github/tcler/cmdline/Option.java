@@ -2,8 +2,8 @@ package com.github.tcler.cmdline;
 
 public class Option {
 	String[] names;
-	ArgType argtype;
 	String help;
+	ArgType argtype;
 	String link;
 	boolean hide;
 	boolean forward;
@@ -15,31 +15,65 @@ public class Option {
 		M,
 	}
 
-	public Option(String n, ArgType argtype, String help, String link, boolean hide, boolean forw) {
-		this.names = null;
-		if (n != null && !n.trim().isEmpty()) {
-			this.names = n.split(" ");
+	public static class Builder {
+		// Required parammeters
+		String[] names = null;
+		String help;
+
+		// Optional parammeters
+		ArgType argtype = ArgType.N;
+		String link = "";
+		boolean hide = false;
+		boolean forward = false;
+
+		public Builder(String helpGroup) {
+			this.help = helpGroup;
 		}
-		this.argtype = argtype;
-		this.help = help;
-		this.link = link;
-		this.hide = hide;
-		this.forward = forw;
+		public Builder(String names, String help, ArgType type) {
+			if (names != null && !names.trim().isEmpty()) {
+				this.names = names.split(" ");
+			}
+			this.help = help;
+			this.argtype = type;
+		}
+		public Builder(String names, String help) {
+			this(names, help, ArgType.N);
+		}
+
+		public Builder type(ArgType val) {
+			argtype = val;
+			return this;
+		}
+		public Builder link(String val) {
+			link = val;
+			return this;
+		}
+		public Builder hide(boolean val) {
+			hide = val;
+			return this;
+		}
+		public Builder hide() {
+			return this.hide(true);
+		}
+		public Builder forward(boolean val) {
+			forward = val;
+			return this;
+		}
+		public Builder forward() {
+			return this.forward(true);
+		}
+
+		public Option build() {
+			return new Option(this);
+		}
 	}
 
-	public Option(String n, ArgType argtype, String help) {
-		this(n, argtype, help, "", false, false);
-	}
-	public Option(String n, ArgType argtype, String help, String link) {
-		this(n, argtype, help, link, false, false);
-	}
-	public Option(String n, ArgType argtype, String help, boolean forw) {
-		this(n, argtype, help, "", false, forw);
-	}
-	public Option(String n, ArgType argtype, String help, String link, boolean hide) {
-		this(n, argtype, help, link, hide, false);
-	}
-	public Option(String help) {
-		this("", ArgType.N, help, "", false, false);
+	private Option(Builder builder) {
+		this.names = builder.names;
+		this.argtype = builder.argtype;
+		this.help = builder.help;
+		this.link = builder.link;
+		this.hide = builder.hide;
+		this.forward = builder.forward;
 	}
 }
