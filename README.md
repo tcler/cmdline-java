@@ -38,9 +38,9 @@ git clone https://github.com/tcler/cmdline-java
 cd cmdline-java
 javac com/github/tcler/cmdline/*.java &&
 	jar cfe cmdline.jar com.github.tcler.cmdline.Cmdline com/github/tcler/cmdline/*.class &&
-	mv cmdline.jar /usr/share/java/.
+	\mv -f cmdline.jar /usr/share/java/.
 export CLASSPATH=/usr/share/java/cmdline.jar:.
 javac -d . test/CmdlineTest.java
 java CmdlineTest
-find . -name '*.class' | xargs rm -f
+find . -name '*.class' -o -name '*.jar' | xargs rm -f
 ```
